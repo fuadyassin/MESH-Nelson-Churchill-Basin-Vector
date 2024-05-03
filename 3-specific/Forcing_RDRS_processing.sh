@@ -24,7 +24,7 @@ basin="ncrb"
 start_year=1980       #1980
 end_year=1982         #2018
 merged_file="${dir2}/${basin}_rdrs_${start_year}_${end_year}_v21_allVar.nc"
-python_script_path="/home/fuaday/github-repos/MESH-Nelson-Churchill-Basin-Vector/3-specific/RDRS_MESH_vectorbased_forcingImp-Copy1.py"
+python_script_path="/home/fuaday/github-repos/MESH-Nelson-Churchill-Basin-Vector/3-specific/RDRS_MESH_vectorbased_forcingImp.py"
 
 # Set input and output directories
 input_forcing='/scratch/fuaday/ncrb-models/easymore-outputs'

@@ -1,9 +1,9 @@
 """
 @Author: MESHworkflow
 """
-#### loading EASYMORE
-import easymore
 ### load modules
+import easymore
+import sys
 import os
 import numpy as np
 import xarray as xs
@@ -12,18 +12,16 @@ import geopandas as gpd
 import glob
 
 
-# Set input and output directories
-input_directory = '/scratch/fuaday/ncrb-models/easymore-outputs'
-output_directory = '/scratch/fuaday/ncrb-models/easymore-outputs3'
-input_basin    = '/home/fuaday/scratch/ncrb-models/geofabric-outputs/ncrb-geofabric/ncrb_subbasins.shp'
-input_ddb      = '/home/fuaday/scratch/ncrb-models/MESH-ncrb/MESH_drainage_database.nc'
+# Command line arguments
+input_directory = sys.argv[1]
+output_directory = sys.argv[2]
+input_basin = sys.argv[3]
+input_ddb = sys.argv[4]
+start_year = int(sys.argv[5])
+end_year = int(sys.argv[6])
 
 # Ensure output directory exists
 os.makedirs(output_directory, exist_ok=True)
-
-# Years of interest
-start_year = 1986
-end_year = 1987
 
 # Read basin and drainage database files
 basin = gpd.read_file(input_basin)
@@ -36,7 +34,7 @@ db.close()
 # List files based on year range
 files = []
 for year in range(start_year, end_year + 1):
-    files.extend(glob.glob(os.path.join(input_directory, f"remapped_remapped_ncrb_model_{year}*.nc")))
+    files.extend(glob.glob(os.path.join(input_directory, f"remapped_remapped_ncrb_model_{str(year)}*.nc")))
 
 # Process each file
 for file_path in files:
