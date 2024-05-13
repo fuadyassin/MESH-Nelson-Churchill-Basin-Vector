@@ -1,0 +1,11 @@
+Restoring modules from user's scimods
+
+The following have been reloaded with a version change:
+  1) expat/2.4.1 => expat/2.2.9     2) udunits/2.2.28 => udunits/2.2.26
+
+Running Section 2: Merging files
+Directory already exists: /scratch/fuaday/ncrb-models/easymore-outputs-merged
+Section 2 completed: Files merged
+Running Section 3: Converting units
+RDRS_v2.1_P_TT_09944=RDRS_v2.1_P_TT_09944 + 273.15
+RDRS_v2.1_P_P0_SFC=RDRS_v2.1_P_P0_SFC * 100.0

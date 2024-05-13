@@ -19,14 +19,14 @@ module load nco
 
 # extensiton name for your basin
 basin="ncrb"
-start_year=1986       #1980 #forcing start year 
+start_year=1982       #1980 #forcing start year 
 end_year=1986         #2018 #forcing end year 
 # location to python code that is used to remappe to ddb
-python_script_path="/home/fuaday/github-repos/MESH-Nelson-Churchill-Basin-Vector/3-specific/RDRS_MESH_vectorbased_forcingtest.py"
+python_script_path="/home/fuaday/github-repos/MESH-Nelson-Churchill-Basin-Vector/3-specific/RDRS_MESH_vectorbased_forcingMet2.py"
 # Directory where easymore outputs located (This folder the one from model agnostic easymore)
-input_forcing_easymore='/scratch/fuaday/ncrb-models/easymore-outputs2'
+input_forcing_easymore='/scratch/fuaday/ncrb-models/easymore-outputs'
 # Directory where the remapping of easymore forcing to ddb will be saved
-#ddb_remapped_output_forcing='/scratch/fuaday/ncrb-models/easymore-outputs3'
+ddb_remapped_output_forcing='/scratch/fuaday/ncrb-models/easymore-outputs3'
 # geofabric for your basin
 input_basin='/home/fuaday/scratch/ncrb-models/geofabric-outputs/ncrb-geofabric/ncrb_subbasins.shp'
 # drainage database ddb for your basin (model agnostic output)
@@ -36,23 +36,18 @@ dir_merged_file="/scratch/fuaday/ncrb-models/easymore-outputs-merged"
 merged_file="${dir_merged_file}/${basin}_rdrs_${start_year}_${end_year}_v21_allVar.nc"
 
 
-# Function to run section 2: Python script execution
-function run_section2 {
-  echo "Running Section 2: Python script for vector processing"
+# Function to run section 1: Python script execution
+function run_section1 {
+  echo "Running Section 1: Python script for vector processing"
   # Execute the Python script
-   #input_directory = sys.argv[1]
-   #output_directory = sys.argv[2]
-   #input_basin = sys.argv[3]
-   #input_ddb = sys.argv[4]
-   #file_name = sys.argv[5]  # Get the file name as a command line argument
-   python "$python_script_path" "$dir_merged_file" "$dir_merged_file" "$input_basin" "$input_ddb" "$merged_file"
-  echo "Section 2 completed: Python script executed"
+   python "$python_script_path" "$input_forcing_easymore" "$ddb_remapped_output_forcing" "$input_basin" "$input_ddb" "$start_year" "$end_year"
+  echo "Section 1 completed: Python script executed"
 }
 
 
-# Function to run section 1: Merging files
-function run_section1 {
-  echo "Running Section 1: Merging files"
+# Function to run section 2: Merging files
+function run_section2 {
+  echo "Running Section 2: Merging files"
   if [ ! -d "$dir_merged_file" ]; then
       mkdir -p "$dir_merged_file"
       echo "Directory created: $dir_merged_file"
@@ -64,11 +59,11 @@ function run_section1 {
   # Loop through each year and add it to the merge command
   for (( year=$start_year; year<=$end_year; year++ ))
   do
-      merge_cmd+=" ${input_forcing_easymore}/remapped_remapped_ncrb_model_${year}*.nc"
+      merge_cmd+=" ${ddb_remapped_output_forcing}/remapped_remapped_ncrb_model_${year}*.nc"
   done
   # Execute the merge command
   $merge_cmd "$merged_file"
-  echo "Section 1 completed: Files merged"
+  echo "Section 2 completed: Files merged"
 }
 
 

@@ -81,7 +81,9 @@ for file_path in files:
         forc_vec['crs'] = forc['crs'].copy()
 
     # Define a variable for the points and set the 'timeseries_id'
-    forc_vec['subbasin'] = xs.DataArray(db['subbasin'].values.astype(np.int32).astype('S20'), dims=['subbasin'])
+    forc_vec['subbasin'] = xs.DataArray(db['subbasin'].values.astype(np.int32), dims=['subbasin'])
+    forc_vec['subbasin'].attrs['long_name'] = 'shape_id'
+    forc_vec['subbasin'].attrs['units'] = '1'
     forc_vec['subbasin'].attrs['cf_role'] = 'timeseries_id'
     
     # Save to netCDF
