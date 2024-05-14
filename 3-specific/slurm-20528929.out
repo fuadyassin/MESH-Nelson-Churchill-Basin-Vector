@@ -9,3 +9,7 @@ Section 2 completed: Files merged
 Running Section 3: Converting units
 RDRS_v2.1_P_TT_09944=RDRS_v2.1_P_TT_09944 + 273.15
 RDRS_v2.1_P_P0_SFC=RDRS_v2.1_P_P0_SFC * 100.0
+RDRS_v2.1_P_UVC_09944=RDRS_v2.1_P_UVC_09944 * 0.514444
+RDRS_v2.1_A_PR0_SFC=RDRS_v2.1_A_PR0_SFC / 3.6
+Section 3 completed: Units converted
+rm: cannot remove '/scratch/fuaday/ncrb-models/easymore-outputs-merged/ncrb_tem1.nc': No such file or directory
