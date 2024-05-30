@@ -1,0 +1,13 @@
+Restoring modules from user's scimods
+
+The following have been reloaded with a version change:
+  1) expat/2.4.1 => expat/2.2.9     2) udunits/2.2.28 => udunits/2.2.26
+
+Running Section 3: Converting units
+Unknown character!
+Unknown character!
+Unknown character!
+
+cdo    expr (Abort): Syntax error!
+mv: cannot stat '/scratch/fuaday/ncrb-models/easymore-outputs-merged/ncrb_temp.nc': No such file or directory
+Section 3 completed: Units converted in 1 seconds.

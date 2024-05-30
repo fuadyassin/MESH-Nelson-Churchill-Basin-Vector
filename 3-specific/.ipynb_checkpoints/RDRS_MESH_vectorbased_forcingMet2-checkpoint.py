@@ -1,5 +1,22 @@
 """
 @Author: MESHworkflow
+This script processes climate model data for specific subbasins using a drainage database. It reads NetCDF files, reorders the data based on subbasin IDs, and saves the modified data to new NetCDF files.
+
+Command Line Arguments
+input_directory: Directory of input NetCDF files.
+output_directory: Directory for processed files.
+input_basin: Path to basin shapefile.
+input_ddb: Path to drainage database file.
+start_year: Start year of data files.
+end_year: End year of data files.
+Steps
+Setup: Ensures the output directory exists and reads the basin and drainage database files.
+List Files: Generates a list of input files based on the year range.
+Process Files:
+Opens each dataset.
+Extracts and reorders data for specified variables.
+Assigns coordinates and metadata.
+Saves the new dataset to a compressed NetCDF file.
 """
 ### load modules
 import easymore
